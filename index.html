@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Student Registration</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Poppins", "Segoe UI", sans-serif;
+    }
+
+    body {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: radial-gradient(circle at top, #fdfcfb, #e2d1c3);
+    }
+
+    .wrapper {
+      display: grid;
+      grid-template-columns: 1fr 1.3fr;
+      max-width: 920px;
+      width: 92%;
+      background: #ffffff;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 30px 60px rgba(0, 0, 0, 0.18);
+      animation: popIn 0.9s ease-out;
+    }
+
+    @keyframes popIn {
+      from { opacity: 0; transform: scale(0.95) translateY(20px); }
+      to { opacity: 1; transform: scale(1) translateY(0); }
+    }
+
+    /* LEFT PANEL */
+    .info-panel {
+      background: linear-gradient(160deg, #ffecd2, #fcb69f);
+      padding: 45px 35px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      color: #4a2c2a;
+      animation: slideLeft 1s ease forwards;
+    }
+
+    @keyframes slideLeft {
+      from { transform: translateX(-40px); opacity: 0; }
+      to { transform: translateX(0); opacity: 1; }
+    }
+
+    .info-panel h1 {
+      font-size: 30px;
+      margin-bottom: 14px;
+    }
+
+    .info-panel p {
+      font-size: 15px;
+      line-height: 1.7;
+      opacity: 0.9;
+    }
+
+    /* RIGHT PANEL */
+    .form-panel {
+      padding: 40px 45px;
+      animation: slideRight 1s ease forwards;
+    }
+
+    @keyframes slideRight {
+      from { transform: translateX(40px); opacity: 0; }
+      to { transform: translateX(0); opacity: 1; }
+    }
+
+    .form-panel h2 {
+      font-size: 24px;
+      margin-bottom: 25px;
+      color: #333;
+    }
+
+    .form-group {
+      position: relative;
+      margin-bottom: 22px;
+      animation: fadeUp 0.6s ease forwards;
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(15px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* INPUT + FLOAT LABEL */
+    .form-group input[type="text"] {
+      width: 100%;
+      padding: 12px;
+      border: none;
+      border-bottom: 2px solid #ccc;
+      font-size: 14px;
+      outline: none;
+      background: transparent;
+    }
+
+    .form-group label {
+      position: absolute;
+      left: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 14px;
+      color: #777;
+      pointer-events: none;
+      transition: 0.3s ease;
+    }
+
+    .form-group input:focus + label,
+    .form-group input:not(:placeholder-shown) + label {
+      top: -6px;
+      font-size: 12px;
+      color: #f28b82;
+    }
+
+    .form-group input:focus {
+      border-bottom-color: #f28b82;
+    }
+
+    /* ---- GENDER FIX (IMPORTANT PART) ---- */
+    .gender-field {
+      position: static;
+    }
+
+    .gender-title {
+      font-size: 13px;
+      color: #777;
+      margin-bottom: 16px;
+      display: block;
+    }
+
+    .gender-group {
+      display: flex;
+      align-items: center;
+      gap: 40px;          /* space between Male & Female */
+    }
+
+    .gender-group label {
+      position: static;  /* override absolute label */
+      display: flex;
+      align-items: center;
+      gap: 8px;           /* space between radio & text */
+      pointer-events: auto;
+      cursor: pointer;
+      font-size: 14px;
+      color: #555;
+    }
+
+    /* BUTTON */
+    .submit-btn {
+      margin-top: 30px;
+      width: 100%;
+      padding: 13px;
+      background: linear-gradient(135deg, #fcb69f, #ff9a9e);
+      border: none;
+      border-radius: 30px;
+      font-size: 15px;
+      font-weight: 600;
+      color: #fff;
+      cursor: pointer;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .submit-btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
+    }
+
+    @media (max-width: 768px) {
+      .wrapper {
+        grid-template-columns: 1fr;
+      }
+      .info-panel {
+        display: none;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="wrapper">
+
+    <div class="info-panel">
+      <h1>Welcome 👋</h1>
+      <p>
+        Register once to access academic services and campus facilities.
+        Please enter your details carefully.
+      </p>
+    </div>
+
+    <div class="form-panel">
+      <h2>Registration Form</h2>
+
+      <form>
+
+        <div class="form-group">
+          <input type="text" required placeholder=" " />
+          <label>Name</label>
+        </div>
+
+        <div class="form-group">
+          <input type="text" required placeholder=" " />
+          <label>Father Name</label>
+        </div>
+
+        <div class="form-group">
+          <input type="text" required placeholder=" " />
+          <label>Mother Name</label>
+        </div>
+
+        <div class="form-group">
+          <input type="text" required placeholder=" " />
+          <label>Hall Ticket No</label>
+        </div>
+
+        <!-- GENDER FIELD -->
+        <div class="form-group gender-field">
+          <span class="gender-title">Gender</span>
+          <div class="gender-group">
+            <label><input type="radio" name="gender"> Male</label>
+            <label><input type="radio" name="gender"> Female</label>
+          </div>
+        </div>
+
+        <button class="submit-btn" type="submit">Submit</button>
+
+      </form>
+    </div>
+
+  </div>
+
+</body>
+</html>
